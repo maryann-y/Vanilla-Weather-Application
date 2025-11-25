@@ -9,7 +9,16 @@ function formatDate(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  
+  let days = [
+  "Sunday",
+   "Monday",
+    "Tuesday", 
+    "Wednesday", 
+    "Thursday", 
+    "Friday",
+     "Saturday",
+    ];
+
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
@@ -24,7 +33,7 @@ function displayForecast(response) {
 
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  
 dayOfWeek = days [date.getDay()];
 
   let forecastHTML = `<div class="row">`;
@@ -67,7 +76,7 @@ function displayTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
-  let dateElement = document.querySelector("#date");
+  let dateElement = document.querySelector("#day");
   let iconElement = document.querySelector("#icon");
 
   celsiusTemperature = response.data.temperature.current;
