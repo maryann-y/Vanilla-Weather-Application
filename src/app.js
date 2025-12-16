@@ -9,15 +9,6 @@ function formatDate(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let days = [
-  "Sunday",
-   "Monday",
-    "Tuesday", 
-    "Wednesday", 
-    "Thursday", 
-    "Friday",
-     "Saturday",
-    ];
 
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
@@ -105,25 +96,32 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayForecast () {
-  let days = ["Sun","Mon","Tue","Wed","Thu"];
-let forecastHTML =
-forecastHTML +
-`
-  <div class="weather-forecast-day">
-  <div class="weather-forecast-date">Sat</div>
-  <div class="weather-forecast-icon">⛅️</div>
-  <div class="weather-forecast-temperatures">
-  <div class="weather-forecast-temperature">
-    <strong>15°</strong>
-  </div>
-  <div class="weather-forecast-temperature">9°</div>
- </div>
-  </div>
-`;
-};
+function displayweatherForecast() {
+  let forecast = document.querySelector("#weather-forecast");
 
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+let forecastHTML= "";
+days.forEach(function (day) {
+  forecastHTML = 
+  forecastHTML +
+  `
+  <div class="weather-daily-forecast">
+              <div class="weather-daily-forecast-date">${day}</div> 
+                <div class="weather-daily-forecast-icon">🌤️</div>
+                <div class="weather-daily-forecast-temperatures">
+                <div class="weather-daily-forecast-temperature">
+                  <strong>15°</strong>
+                  </div>
+                <div class="weather-daily-forecast-temperature">9°</div>
+        </div>
+        </div>
+  `;
+});
 
+forecastElement.innerHTML = forecastHTML; 
+}
+
+  
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -153,8 +151,5 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("New York");
-// displayForecast();
+displayweatherForecast();
 
-let forecastElement = document.querySelector("#forecast");
-
-forecastElement.innerHTML = forecastHTML; 
